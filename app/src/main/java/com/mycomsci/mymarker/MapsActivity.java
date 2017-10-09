@@ -8,7 +8,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Date;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -40,7 +43,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+
+        for(int i=0;i<50;i++){
+            String url = "http://media.istockphoto.com/photos/senior-farmer-in-a-field-examining-crop-picture-id514790466?k=6&m=514790466&s=612x612&w=0&h=uQrXM7hwdGY4tfwqttDGBSp6KYnzPK1ukqUG_h93Imc=&v="+i+(new Date().getTime());
+
+            LatLng sydney2 = new LatLng(-34+i, 151+i);
+            MarkerOptions op = new MarkerOptions().position(sydney2).title("Marker in Sydney");
+            IconMarker.getInstan(this).setMarkerAvatar(mMap.addMarker(op),url);
+        }
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    public void setList(){
+
     }
 }
